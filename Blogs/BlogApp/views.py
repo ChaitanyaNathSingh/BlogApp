@@ -22,7 +22,7 @@ def posts_create(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def posts_update(request, pk):
-    p = get_object_or_404(Post, id=pk)
+    p = get_object_or_404(Post, title=pk)
     if request.method == "GET":
         post_serializers = PostSerializers(p)
         return Response(post_serializers.data, status=status.HTTP_200_OK)
@@ -34,6 +34,27 @@ def posts_update(request, pk):
     if request.method == "DELETE":
         p.delete()
         return Response({'msg': 'done'}, status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET'])
+def filter_posts_author(request, pk):
+    if request.method == "GET":
+        p = Post.objects.filter(author=pk)
+        post_serializers = PostSerializers(p, many=True)
+        return Response(post_serializers.data, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def filter_posts_genre(request, pk):
+    if request.method == "GET":
+        p = Post.objects.filter(genre=pk)
+        post_serializers = PostSerializers(p, many=True)
+        return Response(post_serializers.data, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def filter_posts_between_dates(request, start, end):
+    if request.method == "GET":
+        p = Post.objects.filter(date__range=[start, end])
+        post_serializers = PostSerializers(p, many=True)
+        return Response(post_serializers.data, status=status.HTTP_200_OK)
 
 class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializers

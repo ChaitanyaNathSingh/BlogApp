@@ -1,10 +1,11 @@
+from enum import unique
 from django.db import models
 from django.template.defaultfilters import truncatechars
 
 # Create your models here.
 
 class Post(models.Model):
-    title = models.CharField(max_length=10)
+    title = models.CharField(max_length=10, unique=True)
     genre = models.CharField(max_length=20)
     author = models.CharField(max_length=30)
     publish_date = models.DateField(null=True,blank=True)

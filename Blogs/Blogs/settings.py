@@ -82,13 +82,13 @@ DATABASES = {
     }
 }
 
-# TEST_RUNNER = "django_nose.NoseTestSuiteRunner"
-# NOSE_ARGS = [
-#     "--cover-erase",
-#     #'--cover-package=create_tasksapp',
-#     "--with-xunit",  # Add this and the following line
-#     "--xunit-file=Xunittest.xml",
-# ] # print(direct)
+TEST_RUNNER = "django_nose.NoseTestSuiteRunner"
+NOSE_ARGS = [
+    "--cover-erase",
+    #'--cover-package=create_tasksapp',
+    "--with-xunit",  # Add this and the following line
+    "--xunit-file=Xunittest.xml",
+] # print(direct)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
