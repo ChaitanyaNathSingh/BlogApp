@@ -112,6 +112,23 @@ def filter_posts_between_dates(request, start, end):
         # post_serializers = PostSerializers(p, many=True)
         # return Response(post_serializers.data, status=status.HTTP_200_OK)
 
+@api_view(['GET'])
+def description_length(request, pk):
+    if request.method == "GET":
+        """
+        
+        Write your code to find the length of description of each POST here and send response status , data
+        Model Name = Post
+        Serializer Class = PostSerializers
+
+        """
+        # p = Post.objects.filter(title=pk)
+        # post_serializers = PostSerializers(p, many=True)
+        # return Response(post_serializers.data, status=status.HTTP_200_OK)
+
+
+# Do not change this class
+
 class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializers
     queryset = Post.objects.all()

@@ -106,6 +106,13 @@ class BlogTestCase3(APITestCase):
         self.assertEquals(result[0]['genre'],'action')
         self.assertEquals(result[1]['genre'],'Romance')
     
+    def test_description_length(self):
+        response=self.client.get(reverse("description_length"), args=['Arshad'])
+        result=response.json()
+        print(result)
+        self.assertEqual(response.status_code,200)
+        self.assertEquals(result['description_length'],9)
+        
     def filter_posts_between_dates(self):
         response=self.client.get(reverse("filter_posts_between_dates",args=['2022-10-11','2022-10-12']))
         result=response.json()
