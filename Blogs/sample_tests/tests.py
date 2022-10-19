@@ -19,13 +19,6 @@ class BlogTestCase1(APITestCase):
         self.assertEqual(response.status_code,200)
         self.assertEquals(l, 2)
     
-    def test_author_details(self):
-        t = Post.objects.get(title="Sriya")
-        self.assertEquals(t.author, "sri")
-        self.assertEquals(t.genre, "Romance")
-        self.assertEquals(t.description, "abc")
-        self.assertEquals(str(t.publish_date), "2022-10-13")
-    
     def test_post_posts(self):
         data = {
             "title":"hello",
@@ -106,13 +99,6 @@ class BlogTestCase3(APITestCase):
         self.assertEquals(result[0]['genre'],'action')
         self.assertEquals(result[1]['genre'],'Romance')
     
-    def test_description_length(self):
-        response=self.client.get(reverse("description_length"), args=['Arshad'])
-        result=response.json()
-        print(result)
-        self.assertEqual(response.status_code,200)
-        self.assertEquals(result['description_length'],9)
-        
     def filter_posts_between_dates(self):
         response=self.client.get(reverse("filter_posts_between_dates",args=['2022-10-11','2022-10-12']))
         result=response.json()
