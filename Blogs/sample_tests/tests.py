@@ -100,11 +100,11 @@ class BlogTestCase3(APITestCase):
         self.assertEquals(result[1]['genre'],'Romance')
     
     def test_filter_posts_between_dates(self):
-        response=self.client.get(reverse("filter_posts_between_dates",args=['2022-10-11','2022-10-12']))
+        response=self.client.get(reverse("filter_posts_between_dates",args=['2022-10-11','2022-10-13']))
         result=response.json()
         print(result)
         self.assertEqual(response.status_code,200)
-        self.assertEquals(len(result),2)
+        self.assertEquals(len(result),4)
         self.assertEquals(result[0]['author'],'sri')
         self.assertEquals(result[1]['author'],'chay')
 
